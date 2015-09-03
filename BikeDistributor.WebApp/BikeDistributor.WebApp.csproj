@@ -229,14 +229,10 @@
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Site.css" />
+    <Content Include="wwwroot\css\Site.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="wwwroot\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
@@ -257,19 +253,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="bower.json" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <Content Include="Scripts\knockout-2.3.0.debug.js" />
-    <Content Include="Scripts\knockout-2.3.0.js" />
-    <Content Include="Scripts\knockout.validation.debug.js" />
-    <Content Include="Scripts\knockout.validation.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\sammy-0.7.4.js" />
-    <Content Include="Scripts\sammy-0.7.4.min.js" />
-    <Content Include="Scripts\_references.js" />
+    <Content Include="wwwroot\_references.js" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -305,7 +289,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\_Cart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\_Register.cshtml" />
@@ -313,34 +296,34 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\app\directives\" />
-    <Folder Include="Scripts\lib\" />
+    <Folder Include="wwwroot\js\app\directives\" />
+    <Folder Include="wwwroot\lib\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="wwwroot\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="wwwroot\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="wwwroot\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Scripts\app\app.ts" />
-    <TypeScriptCompile Include="Scripts\app\controllers\CartController.ts" />
-    <TypeScriptCompile Include="Scripts\app\controllers\indexController.ts" />
-    <TypeScriptCompile Include="Scripts\app\controllers\loginController.ts" />
-    <TypeScriptCompile Include="Scripts\app\controllers\registerController.ts" />
-    <TypeScriptCompile Include="Scripts\app\controllers\StoreController.ts" />
-    <TypeScriptCompile Include="Scripts\app\services\AuthInterceptorService.ts" />
-    <TypeScriptCompile Include="Scripts\app\services\AuthService.ts" />
-    <TypeScriptCompile Include="Scripts\app\services\OrderService.ts" />
-    <TypeScriptCompile Include="Scripts\typings\angularjs\angular-animate.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\angularjs\angular-cookies.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\angularjs\angular-mocks.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\angularjs\angular-resource.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\angularjs\angular-route.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\angularjs\angular-sanitize.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\angularjs\angular.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="wwwroot\typings\angularjs\angular-animate.d.ts" />
+    <TypeScriptCompile Include="wwwroot\typings\angularjs\angular-cookies.d.ts" />
+    <TypeScriptCompile Include="wwwroot\typings\angularjs\angular-mocks.d.ts" />
+    <TypeScriptCompile Include="wwwroot\typings\angularjs\angular-resource.d.ts" />
+    <TypeScriptCompile Include="wwwroot\typings\angularjs\angular-route.d.ts" />
+    <TypeScriptCompile Include="wwwroot\typings\angularjs\angular-sanitize.d.ts" />
+    <TypeScriptCompile Include="wwwroot\typings\angularjs\angular.d.ts" />
+    <TypeScriptCompile Include="wwwroot\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="wwwroot\js\app\app.ts" />
+    <TypeScriptCompile Include="wwwroot\js\app\controllers\CartController.ts" />
+    <TypeScriptCompile Include="wwwroot\js\app\controllers\indexController.ts" />
+    <TypeScriptCompile Include="wwwroot\js\app\controllers\loginController.ts" />
+    <TypeScriptCompile Include="wwwroot\js\app\controllers\registerController.ts" />
+    <TypeScriptCompile Include="wwwroot\js\app\controllers\StoreController.ts" />
+    <TypeScriptCompile Include="wwwroot\js\app\services\AuthInterceptorService.ts" />
+    <TypeScriptCompile Include="wwwroot\js\app\services\AuthService.ts" />
+    <TypeScriptCompile Include="wwwroot\js\app\services\OrderService.ts" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BikeDistributor\BikeDistributor.csproj">

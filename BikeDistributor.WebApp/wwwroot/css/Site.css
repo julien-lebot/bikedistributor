@@ -126,3 +126,7 @@ a, a:focus, a:hover {
 {
     text-align: left;
 }
+
+.grow { transition: all .5s ease-in-out; }
+
+.grow:hover { transform: scale(1.1); }

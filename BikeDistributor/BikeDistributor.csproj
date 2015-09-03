@@ -39,7 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DiscountPolicy.cs" />
+    <Compile Include="AggregateDiscountPolicy.cs" />
     <Compile Include="HtmlReceiptBuilder.cs" />
     <Compile Include="IDiscountPolicy.cs" />
     <Compile Include="IDiscountStrategy.cs" />

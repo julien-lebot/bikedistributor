@@ -9,6 +9,14 @@ namespace BikeDistributor
 
     public class Bike
     {
+        /// <summary>
+        /// Default constructor for EF
+        /// </summary>
+        public Bike()
+        {
+
+        }
+
         public Bike(string brand, string model, decimal price)
         {
             Id = Guid.NewGuid();

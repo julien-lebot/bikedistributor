@@ -3,7 +3,10 @@ using System.Linq;
 
 namespace BikeDistributor
 {
-    public class DiscountPolicy : IDiscountPolicy
+    /// <summary>
+    /// A discount policy that aggregates multiple discount strategies
+    /// </summary>
+    public class AggregateDiscountPolicy : IDiscountPolicy
     {
         private readonly IList<IDiscountStrategy> _discountStrategies = new List<IDiscountStrategy>();
 
