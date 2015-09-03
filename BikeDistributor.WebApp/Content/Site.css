@@ -1,0 +1,128 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* Set padding to display errors that occur during databinding */
+.padding-error {
+    padding-top: 20px;
+}
+
+@media only screen and (max-width: 767px) {
+    .nofloat {
+        float: none;
+        padding: 10px 15px;
+    }
+}
+
+/* Store */
+
+h3 {
+    color: white;
+}
+
+a, a:focus, a:hover {
+    outline: 0 none;
+    text-decoration: none;
+}
+
+.table {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.bike-card {
+    text-align: center;
+}
+
+.headline {
+    background-color: white;
+    padding: 20px 0 20px;
+    border-radius: 5px 5px 0 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.image {
+    position: relative;
+    width: 100%;
+}
+
+.product-picture {
+    width: 250px;
+    border-radius: 5px;
+}
+
+.price {
+    background-color: #ED5A64;
+    color: #ffffff;
+    position: absolute;
+    right: 20px;
+    top: 0;
+    
+    width: 70px;
+    height: 70px;
+    margin: 0 auto;
+    border-radius: 50%;
+    font-size: 20px;
+    font-weight: bold;
+    padding-top: 14px;
+    transition: all 0.3s ease-in-out;
+}
+
+.headline h3 {
+    color: #2C3E50;
+    font-size: 30px;
+    margin: 0 0 20px;
+    min-height: 80px;
+    transition: all 0.3s ease-in-out;
+}
+
+.description {
+    color: white;
+    background-color: #2C3E50;
+    margin: 0;
+    padding: 20px 0 20px 0;
+}
+
+.buy-now-wrapper {
+    background-color: #e0e0e0;
+    padding: 15px 0;
+    border-radius: 0 0 5px 5px
+}
+
+.btn-primary {
+    background-color: #ED5A64;
+    border-color: #DB4F58;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+    background-color: #DB4F58;
+    border-color: #DB4F58;
+    color: white;
+}
+
+.language-label option
+{
+    text-align: left;
+}

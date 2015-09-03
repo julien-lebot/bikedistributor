@@ -1,0 +1,25 @@
+﻿<div class="jumbotron">
+    <h1>Our bikes</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 bike-card" ng-repeat="bike in bikes">
+                <div class="table">
+                    <div class="headline">
+                        <h3>{{bike.brand}} - {{bike.model}}</h3>
+                        <div class="image">
+                            <img class="product-picture" src="http://ecx.images-amazon.com/images/I/818FmNb6YGL._SL1500_.jpg" />
+                            <div class="price">${{bike.price}}</div>
+                        </div>
+
+                    </div>
+                    <div class="description">
+                        <p>Super bike that goes well on roads.</p>
+                    </div>
+                    <div class="buy-now-wrapper">
+                        <button class="btn btn-primary" ng-click="addToCart(bike.id)">Buy Now !</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
