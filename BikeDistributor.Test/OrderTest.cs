@@ -1,5 +1,7 @@
 ﻿using System.Globalization;
 using System.Threading;
+using BikeDistributor.Models;
+using BikeDistributor.ViewModels;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -18,15 +20,15 @@ namespace BikeDistributor.Test
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
         }
 
-        public IDiscountPolicy CreateStandardDiscountPolicy()
+        public IDiscountCalculator CreateStandardDiscountPolicy()
         {
-            var policy = new AggregateDiscountPolicy();
+            var policy = new StrategyDiscountCalculator();
 
-            var strategies = new IDiscountStrategy[3]
+            var strategies = new ILineDiscountStrategy[3]
             {
-                Substitute.For<IDiscountStrategy>(),
-                Substitute.For<IDiscountStrategy>(),
-                Substitute.For<IDiscountStrategy>()
+                Substitute.For<ILineDiscountStrategy>(),
+                Substitute.For<ILineDiscountStrategy>(),
+                Substitute.For<ILineDiscountStrategy>()
             };
 
             // 10% discount on bikes over 1000 for quantity >= 20
@@ -36,9 +38,9 @@ namespace BikeDistributor.Test
                     var line = info.ArgAt<Line>(0);
                     if (line.Quantity >= 20 && line.Bike.Price >= 1000)
                     {
-                        return 0.9m;
+                        return  0.1m;
                     }
-                    return 1m;
+                    return 0;
                 });
 
             // 20% discount on bikes over 2000 for quantity >= 10
@@ -48,9 +50,9 @@ namespace BikeDistributor.Test
                     var line = info.ArgAt<Line>(0);
                     if (line.Quantity >= 10 && line.Bike.Price >= 2000)
                     {
-                        return 0.8m;
+                        return 0.2m;
                     }
-                    return 1m;
+                    return 0;
                 });
 
             // 20% discount on bikes over 5000 for quantity >= 5
@@ -60,9 +62,9 @@ namespace BikeDistributor.Test
                     var line = info.ArgAt<Line>(0);
                     if (line.Quantity >= 5 && line.Bike.Price >= 5000)
                     {
-                        return 0.8m;
+                        return 0.2m;
                     }
-                    return 1m;
+                    return 0;
                 });
 
             foreach (var strategy in strategies)
@@ -79,31 +81,33 @@ namespace BikeDistributor.Test
         [TestCase(21, ExpectedResult = "Order Receipt for Anywhere Bike Shop\r\n\t21 x Giant Defy 1 = $18,900.00\r\nSub-Total: $18,900.00\r\nTax: $1,370.25\r\nTotal: $20,270.25")]
         public string ReceiptOneDefy(int amount)
         {
-            var policy = new AggregateDiscountPolicy();
-            var discount = Substitute.For<IDiscountStrategy>();
+            var policy = new StrategyDiscountCalculator();
+            var discount = Substitute.For<ILineDiscountStrategy>();
             discount.GetDiscount(Arg.Any<Line>()).Returns(
                 info =>
                 {
                     var line = info.ArgAt<Line>(0);
                     if (line.Quantity >= 20 && line.Bike.Price >= 1000)
                     {
-                        return 0.9m;
+                        return 0.1m;
                     }
-                    return 1m;
+                    return 0;
                 });
             policy.AddStrategy(discount);
 
-            var order = new Order("Anywhere Bike Shop", new StringReceiptBuilder(policy));
-            order.AddLine(new Line(Defy, amount));
-            return order.Receipt();
+            var orderVm = new OrderViewModel(policy, new Order("Anywhere Bike Shop", "USD"));
+            orderVm.AddLine(new Line(Defy, amount));
+            var generator = new StringReceiptBuilder();
+            return generator.GenerateReceipt(orderVm);
         }
 
         [Test]
         public void ReceiptOneElite()
         {
-            var order = new Order("Anywhere Bike Shop", new StringReceiptBuilder(CreateStandardDiscountPolicy()));
+            var order = new OrderViewModel(CreateStandardDiscountPolicy(), new Order("Anywhere Bike Shop", "USD"));
             order.AddLine(new Line(Elite, 1));
-            Assert.AreEqual(ResultStatementOneElite, order.Receipt());
+            var generator = new StringReceiptBuilder();
+            Assert.AreEqual(ResultStatementOneElite, generator.GenerateReceipt(order));
         }
 
         private const string ResultStatementOneElite = @"Order Receipt for Anywhere Bike Shop
@@ -115,9 +119,10 @@ Total: $2,145.00";
         [Test]
         public void ReceiptOneDuraAce()
         {
-            var order = new Order("Anywhere Bike Shop", new StringReceiptBuilder(CreateStandardDiscountPolicy()));
+            var order = new OrderViewModel(CreateStandardDiscountPolicy(), new Order("Anywhere Bike Shop", "USD"));
             order.AddLine(new Line(DuraAce, 1));
-            Assert.AreEqual(ResultStatementOneDuraAce, order.Receipt());
+            var generator = new StringReceiptBuilder();
+            Assert.AreEqual(ResultStatementOneDuraAce, generator.GenerateReceipt(order));
         }
 
         private const string ResultStatementOneDuraAce = @"Order Receipt for Anywhere Bike Shop
@@ -129,9 +134,10 @@ Total: $5,362.50";
         [Test]
         public void HtmlReceiptOneDefy()
         {
-            var order = new Order("Anywhere Bike Shop", new HtmlReceiptBuilder(CreateStandardDiscountPolicy()));
+            var order = new OrderViewModel(CreateStandardDiscountPolicy(), new Order("Anywhere Bike Shop", "USD"));
             order.AddLine(new Line(Defy, 1));
-            Assert.AreEqual(HtmlResultStatementOneDefy, order.Receipt());
+            var generator = HtmlReceiptBuilder.TestBuilder();
+            Assert.AreEqual(HtmlResultStatementOneDefy, generator.GenerateReceipt(order));
         }
 
         private const string HtmlResultStatementOneDefy = @"<html><body><h1>Order Receipt for Anywhere Bike Shop</h1><ul><li>1 x Giant Defy 1 = $1,000.00</li></ul><h3>Sub-Total: $1,000.00</h3><h3>Tax: $72.50</h3><h2>Total: $1,072.50</h2></body></html>";
@@ -139,9 +145,10 @@ Total: $5,362.50";
         [Test]
         public void HtmlReceiptOneElite()
         {
-            var order = new Order("Anywhere Bike Shop", new HtmlReceiptBuilder(CreateStandardDiscountPolicy()));
+            var order = new OrderViewModel(CreateStandardDiscountPolicy(), new Order("Anywhere Bike Shop", "USD"));
             order.AddLine(new Line(Elite, 1));
-            Assert.AreEqual(HtmlResultStatementOneElite, order.Receipt());
+            var generator = HtmlReceiptBuilder.TestBuilder();
+            Assert.AreEqual(HtmlResultStatementOneElite, generator.GenerateReceipt(order));
         }
 
         private const string HtmlResultStatementOneElite = @"<html><body><h1>Order Receipt for Anywhere Bike Shop</h1><ul><li>1 x Specialized Venge Elite = $2,000.00</li></ul><h3>Sub-Total: $2,000.00</h3><h3>Tax: $145.00</h3><h2>Total: $2,145.00</h2></body></html>";
@@ -149,9 +156,10 @@ Total: $5,362.50";
         [Test]
         public void HtmlReceiptOneDuraAce()
         {
-            var order = new Order("Anywhere Bike Shop", new HtmlReceiptBuilder(CreateStandardDiscountPolicy()));
+            var order = new OrderViewModel(CreateStandardDiscountPolicy(), new Order("Anywhere Bike Shop", "USD"));
             order.AddLine(new Line(DuraAce, 1));
-            Assert.AreEqual(HtmlResultStatementOneDuraAce, order.Receipt());
+            var generator = HtmlReceiptBuilder.TestBuilder();
+            Assert.AreEqual(HtmlResultStatementOneDuraAce, generator.GenerateReceipt(order));
         }
 
         private const string HtmlResultStatementOneDuraAce = @"<html><body><h1>Order Receipt for Anywhere Bike Shop</h1><ul><li>1 x Specialized S-Works Venge Dura-Ace = $5,000.00</li></ul><h3>Sub-Total: $5,000.00</h3><h3>Tax: $362.50</h3><h2>Total: $5,362.50</h2></body></html>";    

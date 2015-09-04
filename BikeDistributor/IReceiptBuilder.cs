@@ -1,4 +1,6 @@
-﻿namespace BikeDistributor
+﻿using BikeDistributor.ViewModels;
+
+namespace BikeDistributor
 {
     /// <summary>
     /// Generates a receipt for an order.
@@ -11,6 +13,6 @@
         /// </summary>
         /// <param name="order">The order to generate a receipt for.</param>
         /// <returns>A text representation of the receipt.</returns>
-        string GenerateReceipt(Order order);
+        string GenerateReceipt(OrderViewModel order);
     }
 }

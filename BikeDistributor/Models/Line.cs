@@ -1,4 +1,4 @@
-﻿namespace BikeDistributor
+﻿namespace BikeDistributor.Models
 {
     /// <summary>
     /// A line in an order.

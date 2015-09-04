@@ -307,14 +307,6 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="wwwroot\typings\angularjs\angular-animate.d.ts" />
-    <TypeScriptCompile Include="wwwroot\typings\angularjs\angular-cookies.d.ts" />
-    <TypeScriptCompile Include="wwwroot\typings\angularjs\angular-mocks.d.ts" />
-    <TypeScriptCompile Include="wwwroot\typings\angularjs\angular-resource.d.ts" />
-    <TypeScriptCompile Include="wwwroot\typings\angularjs\angular-route.d.ts" />
-    <TypeScriptCompile Include="wwwroot\typings\angularjs\angular-sanitize.d.ts" />
-    <TypeScriptCompile Include="wwwroot\typings\angularjs\angular.d.ts" />
-    <TypeScriptCompile Include="wwwroot\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="wwwroot\js\app\app.ts" />
     <TypeScriptCompile Include="wwwroot\js\app\controllers\CartController.ts" />
     <TypeScriptCompile Include="wwwroot\js\app\controllers\indexController.ts" />
@@ -324,6 +316,14 @@
     <TypeScriptCompile Include="wwwroot\js\app\services\AuthInterceptorService.ts" />
     <TypeScriptCompile Include="wwwroot\js\app\services\AuthService.ts" />
     <TypeScriptCompile Include="wwwroot\js\app\services\OrderService.ts" />
+    <TypeScriptCompile Include="wwwroot\typings\angularjs\angular-animate.d.ts" />
+    <TypeScriptCompile Include="wwwroot\typings\angularjs\angular-cookies.d.ts" />
+    <TypeScriptCompile Include="wwwroot\typings\angularjs\angular-mocks.d.ts" />
+    <TypeScriptCompile Include="wwwroot\typings\angularjs\angular-resource.d.ts" />
+    <TypeScriptCompile Include="wwwroot\typings\angularjs\angular-route.d.ts" />
+    <TypeScriptCompile Include="wwwroot\typings\angularjs\angular-sanitize.d.ts" />
+    <TypeScriptCompile Include="wwwroot\typings\angularjs\angular.d.ts" />
+    <TypeScriptCompile Include="wwwroot\typings\jquery\jquery.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BikeDistributor\BikeDistributor.csproj">

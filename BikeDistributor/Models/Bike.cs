@@ -1,12 +1,7 @@
 ﻿using System;
 
-namespace BikeDistributor
+namespace BikeDistributor.Models
 {
-    public class BikeRepository
-    {
-
-    }
-
     public class Bike
     {
         /// <summary>
