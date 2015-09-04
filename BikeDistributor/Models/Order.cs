@@ -4,7 +4,7 @@ namespace BikeDistributor.Models
 {
     public class Order
     {
-        public Order(string company, string currency,  decimal taxRate = .0725m)
+        public Order(string company, string currency,  decimal taxRate)
         {
             Currency = currency;
             TaxRate = taxRate;
@@ -21,13 +21,13 @@ namespace BikeDistributor.Models
 
         public string Company { get; private set; }
 
-        public IList<Line> Lines
+        public List<Line> Lines
         {
             get;
             set;
         }
 
-        public IList<string> DiscountCodes
+        public List<string> DiscountCodes
         {
             get;
             set;

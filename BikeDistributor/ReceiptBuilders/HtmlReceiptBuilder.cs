@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using BikeDistributor.ViewModels;
-using RazorEngine;
 using RazorEngine.Configuration;
 using RazorEngine.Templating;
 
-namespace BikeDistributor
+namespace BikeDistributor.ReceiptBuilders
 {
     public class HtmlReceiptBuilder
     {
@@ -21,7 +19,7 @@ namespace BikeDistributor
 <ul>
 @foreach(var line in Model.Lines)
 {
-<li>@line.Quantity x @line.Brand @line.Model = @line.Amount.FormatCurrency(@Model.Currency)</li>
+<li>@line.Quantity x @line.Brand @line.Model = @line.Total.FormatCurrency(@Model.Currency)</li>
 }
 </ul>
 }

@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BikeDistributor", "BikeDist
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BikeDistributor.Test", "BikeDistributor.Test\BikeDistributor.Test.csproj", "{543D14A7-DC7A-4E49-9761-CA6B311DB0CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BikeDistributor.WebApp", "BikeDistributor.WebApp\BikeDistributor.WebApp.csproj", "{C441F72A-7789-4FEC-BED9-9CE97E84A513}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BikeDistributor.Integration.Demo.RazorHtml", "BikeDistributor.Integration.Demo.RazorHtml\BikeDistributor.Integration.Demo.RazorHtml.csproj", "{27AF6ED1-4F42-4938-A500-ACB6ABD506DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{543D14A7-DC7A-4E49-9761-CA6B311DB0CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{543D14A7-DC7A-4E49-9761-CA6B311DB0CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{543D14A7-DC7A-4E49-9761-CA6B311DB0CC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C441F72A-7789-4FEC-BED9-9CE97E84A513}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C441F72A-7789-4FEC-BED9-9CE97E84A513}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C441F72A-7789-4FEC-BED9-9CE97E84A513}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C441F72A-7789-4FEC-BED9-9CE97E84A513}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27AF6ED1-4F42-4938-A500-ACB6ABD506DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27AF6ED1-4F42-4938-A500-ACB6ABD506DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27AF6ED1-4F42-4938-A500-ACB6ABD506DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27AF6ED1-4F42-4938-A500-ACB6ABD506DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

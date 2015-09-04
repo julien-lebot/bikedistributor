@@ -7,25 +7,22 @@ namespace BikeDistributor.ViewModels
 {
     public class OrderViewModel
     {
-        private readonly IDiscountCalculator _discountCalculator;
+        private readonly IDiscountCalculator<OrderViewModel> _orderDiscountCalculator;
+        private readonly IDiscountCalculator<LineViewModel> _lineDiscountCalculator;
         private readonly Order _order;
         private readonly List<LineViewModel> _lines;
 
-        public OrderViewModel(IDiscountCalculator discountCalculator, Order order)
+        public OrderViewModel(IDiscountCalculator<OrderViewModel> orderDiscountCalculator, IDiscountCalculator<LineViewModel> lineDiscountCalculator, Order order)
         {
             if (order == null)
             {
                 throw new ArgumentNullException("order");
             }
-            
-            if (discountCalculator == null)
-            {
-                throw new ArgumentNullException("discountCalculator");
-            }
 
-            _discountCalculator = discountCalculator;
+            _orderDiscountCalculator = orderDiscountCalculator;
+            _lineDiscountCalculator = lineDiscountCalculator;
             _order = order;
-            _lines = new List<LineViewModel>(_order.Lines.Select(line => new LineViewModel(line, discountCalculator)));
+            _lines = new List<LineViewModel>(_order.Lines.Select(line => new LineViewModel(line, _lineDiscountCalculator)));
             UpdatePrices();
         }
 
@@ -37,10 +34,28 @@ namespace BikeDistributor.ViewModels
             }
         }
 
-        public void UpdatePrices()
+        private void UpdatePrices()
         {
-            SubTotal = Lines.Sum(item => item.Amount) - _discountCalculator.GetDiscount(_order);
+            SubTotal = Lines.Sum(item => item.Total);
             Tax = _order.TaxRate * SubTotal;
+            _discount = _orderDiscountCalculator != null ? _orderDiscountCalculator.GetDiscount(this) : 0;
+        }
+
+        private decimal _discount;
+        public decimal Discount
+        {
+            get
+            {
+                return _discount;
+            }
+        }
+
+        public IReadOnlyCollection<string> DiscountCodes
+        {
+            get
+            {
+                return _order.DiscountCodes;
+            }
         }
 
         public string Company
@@ -61,7 +76,7 @@ namespace BikeDistributor.ViewModels
         {
             get
             {
-                return SubTotal + Tax;
+                return (SubTotal - Discount) + Tax;
             }
         }
 
@@ -87,14 +102,19 @@ namespace BikeDistributor.ViewModels
             }
         }
 
+        public void AddDiscountCode(string code)
+        {
+            if (string.IsNullOrEmpty(code))
+            {
+                throw new ArgumentNullException("code");
+            }
+            _order.DiscountCodes.Add(code);
+            UpdatePrices();
+        }
+
         public void AddLine(Line line)
         {
-            if (line == null)
-            {
-                throw new ArgumentNullException("line");
-            }
-
-            _lines.Add(new LineViewModel(line, _discountCalculator));
+            _lines.Add(new LineViewModel(line, _lineDiscountCalculator));
             _order.Lines.Add(line);
             UpdatePrices();
         }

@@ -75,8 +75,11 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CurrencyToolsTests.cs" />
+    <Compile Include="DiscountStrategyCalculator.cs" />
+    <Compile Include="LineViewModelTests.cs" />
     <Compile Include="OrderTest.cs" />
     <Compile Include="OrderViewModelTests.cs" />
+    <Compile Include="PredicateDiscountCalculatorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,16 +1,32 @@
-﻿using BikeDistributor.Models;
+﻿using System;
+using BikeDistributor.Models;
 
 namespace BikeDistributor.ViewModels
 {
     public class LineViewModel
     {
         private readonly Line _line;
-        private readonly ILineDiscountStrategy _lineDiscountStrategy;
+        private readonly IDiscountCalculator<LineViewModel> _lineDiscountCalculator;
 
-        public LineViewModel(Line line, ILineDiscountStrategy lineDiscountStrategy)
+        public LineViewModel(Line line, IDiscountCalculator<LineViewModel> lineDiscountCalculator)
         {
+            if (line == null)
+            {
+                throw new ArgumentNullException("line");
+            }
+
+            if (line.Quantity <= 0)
+            {
+                throw new ArgumentException("Invalid quantity");
+            }
+
+            if (line.Bike.Price <= 0)
+            {
+                throw new ArgumentException("Invalid price");
+            }
+
             _line = line;
-            _lineDiscountStrategy = lineDiscountStrategy;
+            _lineDiscountCalculator = lineDiscountCalculator;
         }
 
         public int Quantity
@@ -49,15 +65,23 @@ namespace BikeDistributor.ViewModels
         {
             get
             {
-                return _lineDiscountStrategy.GetDiscount(_line);
+                return _lineDiscountCalculator != null ? _lineDiscountCalculator.GetDiscount(this) : 0;
             }
         }
 
-        public decimal Amount
+        public decimal SubTotal
         {
             get
             {
-                return Quantity * Price - Discount;
+                return Quantity * Price;
+            }
+        }
+
+        public decimal Total
+        {
+            get
+            {
+                return SubTotal - Discount;
             }
         }
     }

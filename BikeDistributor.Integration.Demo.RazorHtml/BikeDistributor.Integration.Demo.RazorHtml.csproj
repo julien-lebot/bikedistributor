@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4FBA25B5-279C-4FD3-A904-FF88BEF4A480}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{27AF6ED1-4F42-4938-A500-ACB6ABD506DE}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BikeDistributor</RootNamespace>
-    <AssemblyName>BikeDistributor</AssemblyName>
+    <RootNamespace>BikeDistributor.Integration.Demo.RazorHtml</RootNamespace>
+    <AssemblyName>BikeDistributor.Integration.Demo.RazorHtml</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,16 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="RazorEngine, Version=3.7.2.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
-      <HintPath>..\packages\RazorEngine.3.7.2\lib\net45\RazorEngine.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,26 +42,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DiscountCalculators\PredicateDiscountBuilder.cs" />
-    <Compile Include="DiscountCalculators\DiscountStrategyOperations.cs" />
-    <Compile Include="IDiscountCalculator.cs" />
-    <Compile Include="DiscountCalculators\PredicateDiscountCalculator.cs" />
-    <Compile Include="DiscountCalculators\DiscountStrategyCalculator.cs" />
-    <Compile Include="Helpers\CurrencyTools.cs" />
-    <Compile Include="ReceiptBuilders\HtmlReceiptBuilder.cs" />
-    <Compile Include="IReceiptBuilder.cs" />
-    <Compile Include="ViewModels\LineViewModel.cs" />
-    <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\Bike.cs" />
-    <Compile Include="ViewModels\OrderViewModel.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\Line.cs" />
-    <Compile Include="ReceiptBuilders\StringReceiptBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="App.config" />
+    <None Include="test.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\BikeDistributor\BikeDistributor.csproj">
+      <Project>{4fba25b5-279c-4fd3-a904-ff88bef4a480}</Project>
+      <Name>BikeDistributor</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

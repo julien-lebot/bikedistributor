@@ -1,0 +1,18 @@
+﻿<html>
+<body>
+    <h1>Order Receipt for @Model.Company</h1>
+    @if (Model.Lines.Any())
+    {
+        <ul>
+            @foreach (var line in Model.Lines)
+            {
+                <li>@line.Quantity x @line.Brand @line.Model (@line.Price.FormatCurrency(@Model.Currency)) @if(line.Discount > 0){ <text>- @line.Discount.FormatCurrency(@Model.Currency)</text> } = @line.Total.FormatCurrency(@Model.Currency)</li>
+            }
+        </ul>
+    }
+    <h3>Sub-Total: @Model.SubTotal.FormatCurrency(@Model.Currency)</h3>
+    <h3>Discounts: @Model.Discount.FormatCurrency(@Model.Currency)</h3>
+    <h3>Tax: @Model.Tax.FormatCurrency(@Model.Currency)</h3>
+    <h2>Total: @Model.Total.FormatCurrency(@Model.Currency)</h2>
+</body>
+</html>
